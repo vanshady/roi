@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+  
+}
+.wrapper {
+      width: 100%;
+      height: 95%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1%;
+}
+</style>
+<!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"-->
+<link rel="stylesheet" type="text/css" href="./fileswitch.css">
+<link rel="stylesheet" type="text/css" href="./switch.css">
+<link rel="stylesheet" type="text/css" href="./d3.slider.css">
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="./makegraph.js"></script>
+<script src="./d3.slider.js"></script>
+<div class = "wrapper">
+  <div class="onoffswitch" style="float:right">
+      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+      <label class="onoffswitch-label" for="myonoffswitch" onclick = labelswitch()>
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch"></span>
+     </label>
+  </div>
+  <div class="fileswitch" style="float:right">
+    <input type="checkbox" name="fileswitch" class="fileswitch-checkbox" id="myfileswitch" checked>
+    <label class="fileswitch-label" for="myfileswitch" onclick = "filechange()">
+        <span class="fileswitch-inner"></span>
+        <span class="fileswitch-switch"></span>
+    </label>
+  </div>
+</div>
+
+<script>
+var filternow = 0.4;
+var filenamenow = "roi_sp.json";
+
+makegraphs(filternow, filenamenow);
+
+function labelswitch(){
+  $(".labels").attr("visibility",function()
+  {if ($(".labels").attr("visibility")=="visible") 
+    return "hidden";else return "visible";
+  });
+}
+
+function filechange(){
+  if (filenamenow == 'roi_sp.json'){
+    filenamenow = 'roi_s.json';
+    makegraphs(filternow, filenamenow);
+  }
+  else {
+    filenamenow = 'roi_sp.json';
+    makegraphs(filternow, filenamenow);
+  }
+}
+
+
+</script>
+<div id = "slider" style="float:bottom "></div>
+<script>
+d3.select('#slider').call(d3.slider().value(filternow).axis(true).min(0.1).max(1.0).step(0.1).on("slide", function(evt, value) {
+ filternow = value;
+ makegraphs(filternow, filenamenow);
+}));
+</script>

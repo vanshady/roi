@@ -1,0 +1,45 @@
+.fileswitch {
+    position: relative; width: 8%;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.fileswitch-checkbox {
+    display: none;
+}
+.fileswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.fileswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.fileswitch-inner:before, .fileswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 8px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.fileswitch-inner:before {
+    content: "EXPLORE S";
+    padding-left: 10px;
+    background-color: #34A7C1; color: #FFFFFF;
+}
+.fileswitch-inner:after {
+    content: "EXPLORE SP";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.fileswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.fileswitch-checkbox:checked + .fileswitch-label .fileswitch-inner {
+    margin-left: 0;
+}
+.fileswitch-checkbox:checked + .fileswitch-label .fileswitch-switch {
+    right: 0px; 
+}
